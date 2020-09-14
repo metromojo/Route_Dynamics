@@ -5,7 +5,7 @@
 [logo]: https://github.com/metromojo/Route_Dynamics/blob/master/Documentation/logo.JPG
 
 `route_dynamics` is a python package created to estimate the energy demand of King County Metro bus routes.
-The package implements a simple dynamical model for the bus moving along realistic elevation profiles gathered from LIDAR data. The modular nature of the packege facilitates exoerimentation with different estimations of:
+The package implements a simple dynamical model for the bus moving along realistic elevation profiles gathered from LIDAR data. The modular nature of the package facilitates experimentation with different estimations of:
 
 * bus speed : Current implementation assumes constant acceleration away / towards bus stops, where the bus speed is 0. Between bus stops far enough apart, the bus reaches a specified speed limit.
 
