@@ -7,18 +7,11 @@
 `route_dynamics` is a python package created to estimate the energy demand of King County Metro bus routes.
 The package implements a simple dynamical model for the bus moving along realistic elevation profiles gathered from LIDAR data. The modular nature of the package facilitates experimentation with different estimations of:
 
-* bus speed : Current implementation assumes constant acceleration away / towards bus stops, where the bus speed is 0. Between bus stops far enough apart, the bus reaches a specified speed limit.
+* bus speed and accleration
 
-* bus stop location : Location of bus stops prescribes the bus speed estimation.
+* bus stop location 
 
-* passenger load : can tripple the bus mass, and therefore drastically effects energy demand.  
-
-
-### Quick Pitch
-
-`route_dynamics` was (and continues to be) developed in partnership with King County metro to resolve inefficiencies in their hybrid electric bus fleet through predictive modeling.
-Although the now electrified bus fleet is 20% more efficient than the old diesel busses, this gain in air quality, sound pollution, and environmental impact is seriously diminished by the fact that replacing batteries is expensive and currently unpredictable.
-We are working to plug this efficient leak by building an open-source python package to predict battery degradation along specific King Country Metro hybrid bus routes using publicly available geographic data and ridership data from KCM. These data are fed into a simple dynamical model for the bus trajectory used to compute the time integrated power output of the bus and procide a tool for both cost efficient matinence schedualing and energy efficient route design and optimization.
+* passenger load 
 
 ### Use Cases
 
@@ -41,9 +34,9 @@ The foundation of `route_dynamics` is a `RouteTrajectory` object, that holds rou
 * **Modular integration of bus speed model** will allow for continued development towards parameter free prediction.
 The package is currently equiped with a "speed up, speed limt, slow down" model, which assumes,
 
-    1) the bus stops as all declared bus stops,
+    1) the bus stops at all declared bus stops,
 
-    2) the bus accelerates with constant acceleration away from bus stops and deccelerates at the same rate towards oncoming stops,
+    2) the bus accelerates away from bus stops following user-definied accleration profile and deccelerates at a constant rate towards oncoming stops,
 
     3) the bus travels at the speed limit when between stops far enough apart to fascilitate acceleration and deceleration.
 
@@ -105,6 +98,9 @@ A virtual environment is included in the repository called environment.yml.
 machine. The raster file used for the example (seattle_dtm.tif) can be found
 [here](https://drive.google.com/open?id=1V8-VIPGcNJ4l7Bd7OYDjIstFb1dsyhxH) with a .uw email address.
 
+#### Have questions?
+You can open an Issue or contact the corresponding author: Erica Eggleton (egglee@uw.edu)
+
 ### Example Outputs
 ___
 #### Elevation and Road Grade Profiles:
@@ -133,13 +129,6 @@ Green bar indicates maximum loading and unloading power for battery modules
 ![accelsegment]
 
 [accelsegment]: https://github.com/metromojo/Route_Dynamics/blob/master/Documentation/Figures/Acceloutput_segment.png
-
-
-#### Route Ranking:
-
-![rank]
-
-[rank]: https://github.com/metromojo/Route_Dynamics/blob/master/examples/README_results/ranking_example.png
 
 #### Example notebook video
 Check out a short video that runs through the package functions in the example notebook and shows the corresponding results
