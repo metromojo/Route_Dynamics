@@ -19,7 +19,7 @@ The package implements a simple dynamical model for the bus moving along realist
 With a predicitive model of module degredation that is route and ridership specific, module replacement can be coordinated with other time intensive matinence that takes busses out of service and into the shop.
 
 * **Route planning**:
-King Country comntains a wide variety of terrien features, and it is likely that certain routes required more energy then other possibilites that would serve the same riders. This package allows route designers to quicky predict energy demand on numerous route possibilities in different conditions to optimize the fleet distribution.  
+King County contains a wide variety of terrain features, and it is likely that certain routes require more energy then other possibilites that would serve the same riders. This package allows route designers to predict energy demand on numerous route possibilities in different conditions to optimize the fleet distribution.  
 
 ### Tech. Specs.
 
@@ -29,7 +29,7 @@ The foundation of `route_dynamics` is a `RouteTrajectory` object, that holds rou
 
 * **Elevation LIDAR data** on King County is loaded for given latitude and longitude coordinate defining a specific route to calculate the route steepnes/grade.
 
-* **Bus stop dependent Ridership**: Bus stop coordinates and associated ridership for specific routes influence the bus speed, acceleration, and mass that can fluctuale up to 3x the unloaded bus mass when at passenger capacity.  
+* **Bus stop dependent ridership**: Bus stop coordinates and associated ridership for specific routes influence the bus speed, acceleration, and mass that can fluctuale up to 3x the unloaded bus mass when at passenger capacity.  
 
 * **Modular integration of bus speed model** will allow for continued development towards parameter free prediction.
 The package is currently equiped with a "speed up, speed limt, slow down" model, which assumes,
@@ -47,9 +47,7 @@ Thanks to modular design, all of the above components can be specified manually 
 
 ### Work Flow
 
-<!-- !!! UPDATE !!! -->
-
-The storage capacity of any battery module decays with the battery's power output, which can be predicted from the simple force balence on a bus moving along it's route. This dynamical model is contained in the module `route_dynamics/route_elevation/long_dynam_model`, and use is demonstrated in the jupyter notebook `examples/use_example__longi_dynam_model.ipynb`.
+The battery's power output is predicted from the simple force balence on a bus moving along it's route. This dynamical model is contained in the module `route_dynamics/route_elevation/long_dynam_model`, and use is demonstrated in the jupyter notebook `examples/use_example__longi_dynam_model.ipynb`.
 
 The flexibility of model for setting the passenger load per bus stop is demonstrated the jupyter notebook `examples/use_example__loaded_bus_mass_per_stop.ipynb`.
 
@@ -58,9 +56,6 @@ Total package structure and function is illustrated in notebook `examples/spring
 ![alt text][flowchart]
 
 [flowchart]: https://github.com/metromojo/Route_Dynamics/blob/master/Documentation/flowchart_spring.png
-
-
-
 
 
 ### Repository structure
@@ -86,7 +81,6 @@ Cases, work flow, and DIRECT poster
 * rasterio
 * rasterstats
 * branca
-<!-- * scikit-learn -->
 
 A virtual environment is included in the repository called environment.yml.
 
@@ -103,11 +97,6 @@ You can open an Issue or contact the corresponding author: Erica Eggleton (eggle
 
 ### Example Outputs
 ___
-#### Elevation and Road Grade Profiles:
-Route 45
-![elevation]
-
-[elevation]: https://github.com/metromojo/Route_Dynamics/blob/master/examples/README_results/route45_profile.png
 
 #### Interactive Map:
 Route 45
@@ -135,8 +124,7 @@ Check out a short video that runs through the package functions in the example n
 [here](https://drive.google.com/open?id=1ZpiIEzNWV0T_pzcjw9jkn3GkSxMLdkwo).
 
 
-
 ### Acknowledements
 
 We would like to thank Dr. David Beck, Chad Curtis, and all DIRECT 2019 TA's for their
-instruction, guidance, and support.
+instruction, guidance, and support. We would also like to thank Dr. Dan Schwartz for advising this project. 
