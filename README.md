@@ -55,7 +55,7 @@ Total package structure and function is illustrated in notebook `examples/spring
 
 ![alt text][flowchart]
 
-[flowchart]: https://github.com/metromojo/Route_Dynamics/blob/master/Documentation/flowchart_spring.png
+[flowchart]: https://github.com/metromojo/Route_Dynamics/blob/master/Documentation/FlowChart_2020.png
 
 
 ### Repository structure
