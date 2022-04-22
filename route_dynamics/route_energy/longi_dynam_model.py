@@ -189,11 +189,11 @@ class RouteTrajectory():
         is_stop = ([False] * len(route_df.index))
         )
 
-        for i in self.stop_nn_indicies.ravel()[::3]:
+        for i in self.stop_nn_indicies.ravel()[::2]:
             route_df.at[i, 'is_bus_stop'] = True
             route_df.at[i, 'is_stop'] = True
             
-        for i in signal_nn_indicies.ravel()[::3]:
+        for i in signal_nn_indicies.ravel()[::2]:
             route_df.at[i, 'is_stop'] = True
             route_df.at[i, 'is_signal'] = True
 
