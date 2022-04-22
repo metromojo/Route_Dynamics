@@ -56,7 +56,7 @@ def const_a_dynamics(route_df, a_m, v_lim):
 
     for i in range(len(x_ns)):
         # set values to Nan if bus stop
-        if route_df.at[i, 'is_bus_stop']:
+        if route_df.at[i, 'is_stop']:
             x_ns[i] = 0.
             x_ls[i] = 0.
             # move to next point
@@ -67,8 +67,8 @@ def const_a_dynamics(route_df, a_m, v_lim):
             # next stop.
             for j in range(i+1, len(x_ns)):
                 # add distance to next point to 'x_ns'
-                x_ns[i] += route_df.at[j, 'distance_from_last_point']
-                if route_df.at[j, 'is_bus_stop']:
+                x_ns[i] += 1.8288
+                if route_df.at[j, 'is_stop']:
                     break # done calulating 'x_ns' at this point
                 # elif not bus stop: move to nest point, add distance
 
@@ -79,15 +79,15 @@ def const_a_dynamics(route_df, a_m, v_lim):
                 # Inclusive start to range because distances are
                 # backward difference. Dont need to include 'j=0'
                 # because the first point has no backward difference.
-                if route_df.at[j, 'is_bus_stop']:
+                if route_df.at[j, 'is_stop']:
                     break # done calulating x_ls at this point
-                x_ls[i] += route_df.at[j, 'distance_from_last_point']
+                x_ls[i] += 1.8288
 
 
     # Define cutoff distance for acceleration and deceleration
     x_a = v_lim**2. / (2*a_m)
 
-    x = route_df.cum_distance.values
+    x = (route_df.length.values)*0.3048 
     v = np.zeros(len(route_df.index))
     a = np.zeros(len(route_df.index))
 
@@ -100,7 +100,7 @@ def const_a_dynamics(route_df, a_m, v_lim):
             and
             x_ns[i] > x_a
             and
-            not route_df.at[i, 'is_bus_stop']
+            not route_df.at[i, 'is_stop']
             ):
 
             a[i] = a_m
@@ -122,7 +122,7 @@ def const_a_dynamics(route_df, a_m, v_lim):
             and
             x_ns[i] <= x_a
             and
-            not route_df.at[i, 'is_bus_stop']
+            not route_df.at[i, 'is_stop']
             ):
 
             a[i] = -a_m
@@ -142,7 +142,7 @@ def const_a_dynamics(route_df, a_m, v_lim):
             and
             x_ns[i] > x_a
             and
-            not route_df.at[i, 'is_bus_stop']
+            not route_df.at[i, 'is_stop']
             ):
             a[i] = 0
             v[i] = v_lim
@@ -159,7 +159,7 @@ def const_a_dynamics(route_df, a_m, v_lim):
             and
             x_ns[i] <= x_a
             and
-            not route_df.at[i, 'is_bus_stop']
+            not route_df.at[i, 'is_stop']
             ):
 
             # add time to clock
@@ -186,7 +186,7 @@ def const_a_dynamics(route_df, a_m, v_lim):
             # tick tock
             t[i] += delta_t
 
-        elif route_df.at[i, 'is_bus_stop']:
+        elif route_df.at[i, 'is_stop']:
             # still want to progress time as if decellerating
             t[i] += t[i-1]
 
