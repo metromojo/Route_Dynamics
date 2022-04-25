@@ -24,6 +24,7 @@ class RouteTrajectory():
         mass_array=None,
         unloaded_bus_mass=12927,
         charging_power_max=None,
+        aux=None,
         a_pos=0.4,
         a_neg=-1.5
         ):
@@ -37,6 +38,7 @@ class RouteTrajectory():
             mass_array,
             unloaded_bus_mass,
             charging_power_max,
+            aux,
             a_pos,
             a_neg
             )
@@ -68,6 +70,7 @@ class RouteTrajectory():
         mass_array,
         unloaded_bus_mass,
         charging_power_max,
+        aux,
         a_pos,
         a_neg
         ):
@@ -95,6 +98,7 @@ class RouteTrajectory():
 
         # Store chargeing ability as instance attribute
         self.charging_power_max = charging_power_max
+        self.aux = aux
 
 
     def _add_dynamics_to_df(self,
@@ -510,7 +514,7 @@ class RouteTrajectory():
         velocity = route_df.velocity.values
 
         # calculate raw power before capping charging ability of bus
-        batt_power_exert = f_traction * velocity
+        batt_power_exert = (f_traction * velocity) + self.aux
         self.raw_batt_power_exert = np.copy(batt_power_exert)
 
         for i in range(len(batt_power_exert)):
